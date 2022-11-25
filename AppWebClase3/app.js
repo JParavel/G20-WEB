@@ -1,4 +1,5 @@
 import express from "express";
+import routerUsuario from "./routes/RutaUsuario.js";
 
 const app = express();
 
@@ -23,15 +24,7 @@ app.get("/redi", (req, res) => {
 
 //Declarar un objeto JSON
 
-const usuario = {
-    nombre: "Pedro",
-    id: 1,
-    email: "soypedro@correocaliente.com",
-    edad: 32,
-    notas: [5, 4.3, 3.7],
-    "id mascota": 2,
-    "atributo con espacios": "atributo"
-}
+
 
 const mascota = {
     nombre: "Calvin",
@@ -41,10 +34,11 @@ const mascota = {
     "id usuario":1
 }
 
-app.get("/usuario", (req, res) => {
-    res.json(usuario)
-})
-
 app.get("/mascota", (req, res) => {
     res.json(mascota)
 })
+
+//Middlewares
+
+app.use("/usuario", routerUsuario)
+
