@@ -1,4 +1,5 @@
 import express from "express";
+import routerMascota from "./routes/RutaMascota.js";
 import routerUsuario from "./routes/RutaUsuario.js";
 
 const app = express();
@@ -8,6 +9,11 @@ const puerto = 8080
 app.listen(puerto, () => {
     console.log("El servidor se esta ejecutando y esta escuchando peticiones.")
 })
+
+//Middlewares
+app.use(express.json())
+app.use("/usuario", routerUsuario)
+app.use("/mascota", routerMascota)
 
 app.get("/inicio", (req, res) => {
     res.send("G20")
@@ -40,5 +46,5 @@ app.get("/mascota", (req, res) => {
 
 //Middlewares
 
-app.use("/usuario", routerUsuario)
+
 
