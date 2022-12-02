@@ -1,5 +1,5 @@
 import express, { Router } from "express"
-import { createUser, deleteUser, readUser, updateUser } from "../controllers/userController.js"
+import { createUser, deleteUser, readUser, updateUser, updateUsers } from "../controllers/userController.js"
 
 const userRouter = express.Router()
 
@@ -19,8 +19,12 @@ userRouter.get("/", (req, res) => {
 
 //ACTUALIZAR
 //PUT
-userRouter.put("/", (req, res) => {
+userRouter.patch("/", (req, res) => {
     updateUser(req, res)
+})
+
+userRouter.patch("/muchos", (req, res) => {
+    updateUsers(req, res)
 })
 
 //ELIMINAR
