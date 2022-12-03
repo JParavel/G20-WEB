@@ -4,7 +4,7 @@ import userModel from "../models/userModel.js";
 export async function createUser(req, res){
 
     // const {nombre, edad, ciudad} = req.body.usuario;
-    const usuario = req.body.usuario;
+    const usuario = req.body;
 
     let documento = null;
 
@@ -30,7 +30,7 @@ export async function readUser(req, res){
 
     let usuario = null;
     try {
-        usuario = await userModel.find({nombre},{"_id":0})
+        usuario = await userModel.findOne({nombre},{"_id":0})
     } catch (error) {
         res.status(400).json(error.message)
         return;
@@ -42,28 +42,12 @@ export async function readUser(req, res){
 //UPDATE
 export async function updateUser(req, res){
 
-    const {id, updates} = req.body
-
-    let documento = null
-
-    try {
-        documento = await userModel.updateOne({"_id":id},updates)
-    } catch (error) {
-        res.status(400).json(error.message)
-        return;
-    }
-
-    res.status(200).json(documento)
-}
-
-export async function updateUsers(req, res){
-
     const {nombre, updates} = req.body
 
     let documento = null
 
     try {
-        documento = await userModel.updateMany({nombre},updates)
+        documento = await userModel.updateOne({nombre},updates,{runValidators:true})
     } catch (error) {
         res.status(400).json(error.message)
         return;
@@ -72,16 +56,32 @@ export async function updateUsers(req, res){
     res.status(200).json(documento)
 }
 
+// export async function updateUsers(req, res){
+
+//     const {nombre, updates} = req.body
+
+//     let documento = null
+
+//     try {
+//         documento = await userModel.updateMany({nombre},updates)
+//     } catch (error) {
+//         res.status(400).json(error.message)
+//         return;
+//     }
+
+//     res.status(200).json(documento)
+// }
+
 
 
 //DELETE
 export async function deleteUser(req, res){
-    const {id} = req.body
+    const {nombre} = req.body
 
     let documento = null
 
     try {
-        documento = await userModel.deleteOne({"_id":id})
+        documento = await userModel.deleteOne({nombre})
     } catch (error) {
         res.status(400).json(error.message)
         return;

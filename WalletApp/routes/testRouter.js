@@ -3,16 +3,14 @@ import userModel from "../models/userModel.js"
 
 const testRouter = express.Router()
 
-testRouter.get("/", async (req, res)=>{
+testRouter.get("/", async (req, res) => {
 
-    const {edad} = req.body;
+    const { edad, nombre } = req.body;
 
     let document = null
 
     try {
-        document = await userModel.find({
-            "notas": { $exist: true}
-        })
+        document = await userModel.find()
     } catch (error) {
         res.json(error)
         return
