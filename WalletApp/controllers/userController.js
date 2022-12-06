@@ -1,19 +1,19 @@
 import userModel from "../models/userModel.js";
+import bcrypt from "bcrypt"
 
 //CREATE
-export async function createUser(req, res){
+export async function createUser(req, res) {
 
-    // const {nombre, edad, ciudad} = req.body.usuario;
     const usuario = req.body;
+    const { contraseña } = usuario
+
+    const salt = await bcrypt.genSalt(10)
+    const contraseñaEncriptada = await bcrypt.hash(contraseña, salt)
+    usuario.contraseña = contraseñaEncriptada
 
     let documento = null;
 
     try {
-        // usuario = await userModel.create({
-        //     nombre,
-        //     edad,
-        //     ciudad
-        // })
         documento = await userModel.create(usuario)
     } catch (error) {
         res.status(400).json(error.message)
@@ -24,13 +24,13 @@ export async function createUser(req, res){
 }
 
 //READ
-export async function readUser(req, res){
+export async function readUser(req, res) {
 
-    const {nombre} = req.body
+    const { nombre } = req
 
     let usuario = null;
     try {
-        usuario = await userModel.findOne({nombre},{"_id":0})
+        usuario = await userModel.findOne({ nombre }, { "_id": 0 })
     } catch (error) {
         res.status(400).json(error.message)
         return;
@@ -40,14 +40,14 @@ export async function readUser(req, res){
 }
 
 //UPDATE
-export async function updateUser(req, res){
+export async function updateUser(req, res) {
 
-    const {nombre, updates} = req.body
+    const { nombre, updates } = req.body
 
     let documento = null
 
     try {
-        documento = await userModel.updateOne({nombre},updates,{runValidators:true})
+        documento = await userModel.updateOne({ nombre }, updates, { runValidators: true })
     } catch (error) {
         res.status(400).json(error.message)
         return;
@@ -75,13 +75,13 @@ export async function updateUser(req, res){
 
 
 //DELETE
-export async function deleteUser(req, res){
-    const {nombre} = req.body
+export async function deleteUser(req, res) {
+    const { nombre } = req.body
 
     let documento = null
 
     try {
-        documento = await userModel.deleteOne({nombre})
+        documento = await userModel.deleteOne({ nombre })
     } catch (error) {
         res.status(400).json(error.message)
         return;

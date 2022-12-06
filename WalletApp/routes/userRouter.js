@@ -1,5 +1,7 @@
 import express from "express"
 import { createUser, deleteUser, readUser, updateUser } from "../controllers/userController.js"
+import holaMundo from "../middlewares/holaMundo.js"
+import verificarToken from "../middlewares/verificarToken.js"
 
 const userRouter = express.Router()
 
@@ -7,15 +9,11 @@ const userRouter = express.Router()
 
 //CREAR
 //POST
-userRouter.post("/", (req, res) => {
-    createUser(req, res)
-})
+userRouter.post("/", holaMundo, createUser)
 
 //LEER
 //GET
-userRouter.get("/", (req, res) => {
-    readUser(req, res)
-})
+userRouter.get("/", verificarToken, readUser)
 
 //ACTUALIZAR
 //PUT
@@ -24,7 +22,7 @@ userRouter.patch("/", (req, res) => {
 })
 
 userRouter.patch("/muchos", (req, res) => {
-    updateUsers(req, res)
+    updateUser(req, res)
 })
 
 //ELIMINAR
