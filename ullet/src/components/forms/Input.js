@@ -4,10 +4,10 @@ import "./forms.css"
 
 function Input(props) {
 
-    const { children, type } = props
+    const { children, type, onChange } = props
 
     return (
-        <input type={type} className='input' placeholder={children}></input>
+        <input type={type} onChange={onChange} className='input' placeholder={children}></input>
     );
 }
 

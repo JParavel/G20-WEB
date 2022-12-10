@@ -1,3 +1,4 @@
+import cors from "cors"
 import express from "express";
 import mongoose from "mongoose";
 import loginRouter from "./routes/loginRouter.js";
@@ -20,6 +21,9 @@ mongoose.connect("mongodb+srv://walletapp:walletapp@clusterwalletapp.ryjayfo.mon
 })
 
 //Middleware
+app.use(cors({
+    origin: "http://localhost:3000"
+}))
 app.use(express.json())
 app.use("/user", userRouter)
 app.use("/test", testRouter)

@@ -6,7 +6,7 @@ const ACCESS_TOKEN = "8eb9a3382ab165319fa12e116ce6758bd7a6e8fdce84129beab8c7e678
 
 export async function login(req, res) {
 
-    const { nombre, password } = req.headers
+    const { nombre, password } = req.body
 
     if (nombre == null || password == null) return res.sendStatus(401)
 
