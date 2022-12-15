@@ -1,13 +1,20 @@
-.boton {
-    background-color: brown;
-    border: none;
-    padding: 0.5rem;
-    color: white;
+.wire-button,
+.fill-button {
+    font-weight: bold;
+    border-radius: calc(infinity*1px);
+    padding: 0.5rem 2.5rem;
+    cursor: pointer;
 }
 
-.boton:hover {
-    background-color: rgb(135, 35, 35);
-    cursor: pointer;
+.wire-button {
+    background-color: transparent;
+    border: solid;
+}
+
+.fill-button {
+    background-color: var(--enf-color);
+    border: none;
+    color: white;
 }
 
 .input {

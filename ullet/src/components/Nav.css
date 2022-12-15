@@ -1,0 +1,11 @@
+li:nth-child(4) {
+    margin-left: auto;
+}
+
+.link {
+    gap: 4rem;
+}
+
+.nav {
+    box-shadow: 0px 1px 10px;
+}

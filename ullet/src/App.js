@@ -3,9 +3,8 @@ import { Routes, Route, Link } from "react-router-dom"
 
 import "./assets/global.css"
 import Nav from './components/Nav';
-import Flex from './components/utils/Flex';
 
-import Home from './views/Home';
+import Home from './views/home/Home';
 import Login from './views/Login';
 import NewUser from './views/NewUser';
 import User from './views/User';
@@ -15,14 +14,8 @@ function App() {
 
     return (
         <div>
-            <Nav>
-                <Flex gap="2rem" padding="1rem">
-                    <Link to="/">Home</Link>
-                    <Link to="/login">Login</Link>
-                    <Link to="/users">Users</Link>
-                    <Link to="/users/new">New User</Link>
-                </Flex>
-            </Nav>
+            <Nav></Nav>
+
             <Routes>
                 <Route path='/' element={<Home></Home>}></Route>
                 <Route path='/login' element={<Login></Login>}></Route>

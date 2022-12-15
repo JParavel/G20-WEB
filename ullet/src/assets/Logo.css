@@ -1,0 +1,9 @@
+.flex {
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo img {
+    width: 34px;
+    height: 34px;
+}

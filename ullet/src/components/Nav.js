@@ -1,15 +1,20 @@
 import React from 'react';
-import Container from './utils/Container';
+import { Link } from 'react-router-dom';
+import Logo from '../assets/Logo';
+import Boton from './forms/Boton';
 
-import "./components.css"
+import "./Nav.css"
 
-function Nav(props) {
-
-    const { children } = props
+function Nav() {
 
     return (
         <nav className='nav'>
-            <Container>{children}</Container>
+            <ul className='link flex container'>
+                <li><Logo></Logo></li>
+                <li><Link to="/"><b>Inicio</b></Link></li>
+                <li><Link to="/about"><b>Nosotros</b></Link></li>
+                <li><Link to="/login"><Boton style="wire">INGRESAR</Boton></Link></li>
+            </ul>
         </nav>
     );
 }
