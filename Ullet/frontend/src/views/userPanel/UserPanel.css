@@ -1,0 +1,35 @@
+.user-panel .balance {
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.user-panel .balance .value {
+    font-size: 32px;
+    margin-left: auto;
+}
+
+.user-panel .transactions {
+    margin-top: 1rem;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.transaction {
+    background-color: rgb(233, 232, 232);
+    box-shadow: none;
+    grid-template-columns: 1fr 1fr;
+    max-width: 20rem;
+}
+
+.transaction .from {
+    font-size: 20px;
+    color: var(--main-color);
+    font-weight: 500;
+}
+
+.transaction .value {
+    font-size: 20px;
+    color: var(--main-color);
+    font-weight: 700;
+    text-align: right;
+}
