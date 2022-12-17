@@ -2,7 +2,7 @@
 import cors from "cors"
 import dotenv from "dotenv"
 import express from "express"
-import mongoose, { mongo } from "mongoose"
+import mongoose from "mongoose"
 
 import apiRouter from "./routes/apiRouter.js"
 

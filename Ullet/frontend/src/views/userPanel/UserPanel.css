@@ -1,35 +1,45 @@
 .user-panel .balance {
-    align-items: center;
-    margin-bottom: 2rem;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
 .user-panel .balance .value {
-    font-size: 32px;
-    margin-left: auto;
+  font-size: 32px;
+  margin-left: auto;
 }
 
 .user-panel .transactions {
-    margin-top: 1rem;
-    gap: 1rem;
-    flex-direction: column;
+  margin-top: 1rem;
+  gap: 1rem;
+  flex-direction: column;
 }
 
-.transaction {
-    background-color: rgb(233, 232, 232);
-    box-shadow: none;
-    grid-template-columns: 1fr 1fr;
-    max-width: 20rem;
+.in-transaction,
+.out-transaction {
+  background-color: rgb(233, 232, 232);
+  box-shadow: none;
+  grid-template-columns: 1fr 1fr;
+  width: 70%;
 }
 
-.transaction .from {
-    font-size: 20px;
-    color: var(--main-color);
-    font-weight: 500;
+.out-transaction {
+  margin-left: auto;
 }
 
-.transaction .value {
-    font-size: 20px;
-    color: var(--main-color);
-    font-weight: 700;
-    text-align: right;
+.from,
+.to {
+  font-size: 18px;
+  color: var(--main-color);
+  font-weight: 500;
+}
+
+.value {
+  font-size: 18px;
+  color: var(--main-color);
+  font-weight: 700;
+  text-align: right;
+}
+
+.out-transaction .value {
+  color: var(--enf-color);
 }
