@@ -3,7 +3,7 @@ import transactionModel from "../models/transactionModel.js";
 //READ
 export async function getTransactions(req, res) {
   try {
-    const { name } = req.params;
+    const { name } = req.userData;
     const documents = await transactionModel.find({
       $or: [{ to: name }, { from: name }],
     });

@@ -1,30 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UserContext from "../../contexts/UserContext";
+import TokenContext from "../../contexts/TonkenContext";
+import { getTransactions } from "../../services/TransactionService";
 import Transaction from "./Transaction";
 
 import "./UserPanel.css";
 
 function UserPanel() {
-  const { user } = useContext(UserContext);
-  const navigate = useNavigate();
-
-  if (!user) {
-    navigate("/login");
-  }
-
-  const name = user.name;
-
-  async function fetchData() {
-    const res = await fetch("http://localhost:8080/api/transaction/" + name);
-    const data = await res.json();
-    setDocuments(data);
-  }
+  const { token } = useContext(TokenContext);
 
   const [documents, setDocuments] = useState([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    fetchData();
+    async function fetchData() {
+      setDocuments(await getTransactions(token));
+    }
+
+    if (token) {
+      fetchData();
+    } else {
+      return navigate("/login");
+    }
   }, []);
 
   return (
