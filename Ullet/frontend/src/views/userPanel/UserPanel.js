@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import TokenContext from "../../contexts/TonkenContext";
 import { getTransactions } from "../../services/TransactionService";
@@ -10,15 +11,21 @@ function UserPanel() {
   const { token } = useContext(TokenContext);
 
   const [documents, setDocuments] = useState([]);
+  const [cookies, setCookies] = useCookies(["token"]);
+
+  const currentToken = token ? token : cookies.token;
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(token);
+    console.log(cookies.token);
+
     async function fetchData() {
-      setDocuments(await getTransactions(token));
+      setDocuments(await getTransactions(currentToken));
     }
 
-    if (token) {
+    if (currentToken) {
       fetchData();
     } else {
       return navigate("/login");

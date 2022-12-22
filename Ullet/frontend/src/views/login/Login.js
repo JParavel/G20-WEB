@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/Logo";
 import Button from "../../components/forms/Button";
@@ -14,14 +15,22 @@ function Login() {
   const { setToken } = useContext(TokenContext);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [cookies, setCookies] = useCookies(["token", "userName"]);
+
   const navigate = useNavigate();
 
   async function onClick(event) {
     event.preventDefault();
     const token = await login(userName, password);
     if (token) {
+      //Variables de contexto
       setUser({ name: userName });
       setToken(token);
+
+      //Cookies
+      setCookies("token", token, { path: "/" });
+      setCookies("userName", userName, { path: "/" });
+
       navigate("/panel");
     } else {
       alert("Usuario o Contraseña Invalido");

@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 
 import "./assets/global.css";
 import Navbar from "./components/ui/Navbar";
@@ -21,31 +22,37 @@ function App() {
       <Route
         path="/login"
         element={
-          <UserProvider>
-            <TokenProvider>
-              <Login />
-            </TokenProvider>
-          </UserProvider>
+          <CookiesProvider>
+            <UserProvider>
+              <TokenProvider>
+                <Login />
+              </TokenProvider>
+            </UserProvider>
+          </CookiesProvider>
         }
       />
       <Route
         path="/register"
         element={
-          <UserProvider>
-            <TokenProvider>
-              <Register />
-            </TokenProvider>
-          </UserProvider>
+          <CookiesProvider>
+            <UserProvider>
+              <TokenProvider>
+                <Register />
+              </TokenProvider>
+            </UserProvider>
+          </CookiesProvider>
         }
       />
       <Route
         path="/panel"
         element={
-          <UserProvider>
-            <TokenProvider>
-              <UserPanel />
-            </TokenProvider>
-          </UserProvider>
+          <CookiesProvider>
+            <UserProvider>
+              <TokenProvider>
+                <UserPanel />
+              </TokenProvider>
+            </UserProvider>
+          </CookiesProvider>
         }
       />
     </Routes>

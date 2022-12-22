@@ -1,18 +1,22 @@
 import React, { useContext } from "react";
+import { useCookies } from "react-cookie";
 import UserContext from "../../contexts/UserContext";
 
 import "./UserPanel.css";
 
 function Transaction(props) {
   const { user } = useContext(UserContext);
-  const name = user.name;
+
+  const [cookies, setCookies] = useCookies(["userName"]);
+
+  const currentName = user ? user.name : cookies.userName;
 
   const { data } = props;
   const { from, to, value, createdAt } = data;
 
   const date = createdAt.substr(0, 10);
 
-  if (name == to) {
+  if (currentName == to) {
     //Entrante
     return (
       <div className="in-transaction grid card">
