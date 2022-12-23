@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
     "dev": "nodemon app.js",
-    "build": "npm install"
+    "build": "npm install",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
